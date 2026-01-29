@@ -3,14 +3,14 @@ import type { SignUpFormFieldValues } from "@/types/forms";
 import { Button } from "@chakra-ui/react";
 import { useFormContext } from "react-hook-form";
 import { toaster } from "@/components/ui/toaster";
-// import { useNavigate } from "react-router-dom";
-// import { routesList } from "@/constants/routes";
+import { useNavigate } from "react-router-dom";
+import { routesList } from "@/constants/routes";
 import { setAuthState } from "@/redux/modules/auth";
 import { useDispatch } from "react-redux";
 import { saveTokenInLocalStorage } from "@/utils/tokens";
 
 export const SignUpButton = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { handleSubmit } = useFormContext<SignUpFormFieldValues>();
@@ -40,7 +40,7 @@ export const SignUpButton = () => {
         duration: 3000,
       });
 
-      // navigate(routesList.Boards);
+      navigate(routesList.Dashboard);
     } catch (error) {
       const errorMessage = error?.data?.error;
 

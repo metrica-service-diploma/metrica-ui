@@ -1,10 +1,13 @@
 export const publicRoutes = {
-  Root: "/",
+  SignIn: "/sign-in",
+  SignUp: "/sign-up",
 };
 
 export const privateRoutes = {
-  SignIn: "/sign-in",
-  SignUp: "/sign-up",
+  Root: "/",
+  App: "/app",
+  Dashboard: "/app/dashboard",
+  Websites: "/app/websites",
 };
 
 export const routesList = {

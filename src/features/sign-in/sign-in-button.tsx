@@ -1,5 +1,5 @@
 import { toaster } from "@/components/ui/toaster";
-// import { routesList } from "@/constants/routes";
+import { routesList } from "@/constants/routes";
 import { setAuthState } from "@/redux/modules/auth";
 import { useSignInMutation } from "@/redux/services/api";
 import type { SignInFormFieldValues } from "@/types/forms";
@@ -7,10 +7,10 @@ import { saveTokenInLocalStorage } from "@/utils/tokens";
 import { Button } from "@chakra-ui/react";
 import { useFormContext } from "react-hook-form";
 import { useDispatch } from "react-redux";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const SignInButton = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { handleSubmit } = useFormContext<SignInFormFieldValues>();
@@ -30,7 +30,7 @@ export const SignInButton = () => {
         duration: 3000,
       });
 
-      // navigate(routesList.Boards);
+      navigate(routesList.Dashboard);
     } catch (error) {
       const errorMessage = error?.data?.error;
 

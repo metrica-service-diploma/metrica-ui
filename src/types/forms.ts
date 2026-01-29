@@ -10,3 +10,8 @@ export type SignInFormFieldValues = {
   email: string;
   password: string;
 };
+
+export type CreateWebsiteFieldValues = {
+  name: string;
+  domain: string;
+};

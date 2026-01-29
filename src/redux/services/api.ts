@@ -3,7 +3,9 @@ import type {
   SignInResponse,
   SignUpRequest,
 } from "@/types/api/auth";
-import type { User } from "@/types/models/User";
+import type { CreateWebsiteRequest } from "@/types/api/website";
+import type { User } from "@/types/models/user";
+import type { Website } from "@/types/models/website";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const apiSlice = createApi({
@@ -31,6 +33,7 @@ export const apiSlice = createApi({
       return headers;
     },
   }),
+  tagTypes: ["Website"],
   endpoints: (builder) => ({
     // Авторизация
     signUp: builder.mutation<User, SignUpRequest>({
@@ -48,6 +51,32 @@ export const apiSlice = createApi({
         body: credentials,
       }),
     }),
+
+    // Вебсайты
+    getUserWebsites: builder.query<Website[], void>({
+      query: () => ({
+        url: "/websites",
+        method: "GET",
+      }),
+      providesTags: ["Website"],
+    }),
+
+    getUserWebsiteById: builder.query<Website, string>({
+      query: (websiteId) => ({
+        url: `/websites/${websiteId}`,
+        method: "GET",
+      }),
+      providesTags: (_result, _error, id) => [{ type: "Website", id }],
+    }),
+
+    createWebsite: builder.mutation<Website, CreateWebsiteRequest>({
+      query: (createWebsiteRequest) => ({
+        url: `/websites`,
+        method: "POST",
+        body: createWebsiteRequest,
+      }),
+      invalidatesTags: ["Website"],
+    }),
   }),
 });
 
@@ -55,4 +84,9 @@ export const {
   // Авторизация
   useSignUpMutation,
   useSignInMutation,
+
+  // Вебсайты
+  useGetUserWebsitesQuery,
+  useGetUserWebsiteByIdQuery,
+  useCreateWebsiteMutation,
 } = apiSlice;
