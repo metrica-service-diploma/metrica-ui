@@ -1,15 +1,30 @@
 import { useGetUserWebsitesQuery } from "@/redux/services/api";
 import { createListCollection, Select } from "@chakra-ui/react";
 
-export const ChooseWebsite = () => {
+type ChooseWebsiteProps = {
+  onChoose: (websiteId: string) => void;
+};
+
+export const ChooseWebsite: React.FC<ChooseWebsiteProps> = ({ onChoose }) => {
   const { data = [] } = useGetUserWebsitesQuery();
 
   const websites = createListCollection({
     items: data.map((website) => ({ label: website.name, value: website.id })),
   });
 
+  const handleValueChange = (details: { value: string[] }) => {
+    if (details.value.length > 0) {
+      onChoose(details.value[0]);
+    }
+  };
+
   return (
-    <Select.Root collection={websites} width={250} variant="subtle">
+    <Select.Root
+      collection={websites}
+      width={250}
+      variant="subtle"
+      onValueChange={handleValueChange}
+    >
       <Select.HiddenSelect />
       <Select.Control>
         <Select.Trigger>

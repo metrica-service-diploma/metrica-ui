@@ -3,6 +3,10 @@ import type {
   SignInResponse,
   SignUpRequest,
 } from "@/types/api/auth";
+import type {
+  GetPageViewsParams,
+  PageViewsResponse,
+} from "@/types/api/metrics";
 import type { CreateWebsiteRequest } from "@/types/api/website";
 import type { User } from "@/types/models/user";
 import type { Website } from "@/types/models/website";
@@ -77,6 +81,19 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: ["Website"],
     }),
+
+    // Аналитика
+    getWebsitePageViews: builder.query<PageViewsResponse, GetPageViewsParams>({
+      query: ({ websiteId, from, to, interval }) => ({
+        url: `/events/website/${websiteId}/page-views`,
+        method: "GET",
+        params: {
+          from,
+          to,
+          interval,
+        },
+      }),
+    }),
   }),
 });
 
@@ -89,4 +106,7 @@ export const {
   useGetUserWebsitesQuery,
   useGetUserWebsiteByIdQuery,
   useCreateWebsiteMutation,
+
+  // Аналитика
+  useGetWebsitePageViewsQuery,
 } = apiSlice;

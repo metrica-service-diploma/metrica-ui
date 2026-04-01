@@ -2,7 +2,7 @@ import { Box, Flex, Heading, Text } from "@chakra-ui/react";
 
 type MetrcisCardProps = {
   heading: string;
-  value: string;
+  value: number;
 };
 
 export const MetrcisCard: React.FC<MetrcisCardProps> = ({ heading, value }) => {
