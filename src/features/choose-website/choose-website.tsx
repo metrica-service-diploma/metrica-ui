@@ -9,11 +9,16 @@ export const ChooseWebsite: React.FC<ChooseWebsiteProps> = ({ onChoose }) => {
   const { data = [] } = useGetUserWebsitesQuery();
 
   const websites = createListCollection({
-    items: data.map((website) => ({ label: website.name, value: website.id })),
+    items: data.map((website) => ({
+      label: website.name,
+      value: website.trackingCode,
+    })),
   });
 
   const handleValueChange = (details: { value: string[] }) => {
     if (details.value.length > 0) {
+      console.log(details);
+
       onChoose(details.value[0]);
     }
   };

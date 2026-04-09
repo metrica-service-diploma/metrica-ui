@@ -4,8 +4,10 @@ import type {
   SignUpRequest,
 } from "@/types/api/auth";
 import type {
-  GetPageViewsParams,
+  GetMetricsParams,
   PageViewsResponse,
+  VisitorsResponse,
+  VisitsResponse,
 } from "@/types/api/metrics";
 import type { CreateWebsiteRequest } from "@/types/api/website";
 import type { User } from "@/types/models/user";
@@ -83,9 +85,33 @@ export const apiSlice = createApi({
     }),
 
     // Аналитика
-    getWebsitePageViews: builder.query<PageViewsResponse, GetPageViewsParams>({
-      query: ({ websiteId, from, to, interval }) => ({
-        url: `/events/website/${websiteId}/page-views`,
+    getWebsitePageViews: builder.query<PageViewsResponse, GetMetricsParams>({
+      query: ({ trackingCode, from, to, interval }) => ({
+        url: `/events/website/${trackingCode}/page-views`,
+        method: "GET",
+        params: {
+          from,
+          to,
+          interval,
+        },
+      }),
+    }),
+
+    getWebsiteVisits: builder.query<VisitsResponse, GetMetricsParams>({
+      query: ({ trackingCode, from, to, interval }) => ({
+        url: `/events/website/${trackingCode}/visits`,
+        method: "GET",
+        params: {
+          from,
+          to,
+          interval,
+        },
+      }),
+    }),
+
+    getWebsiteVisitors: builder.query<VisitorsResponse, GetMetricsParams>({
+      query: ({ trackingCode, from, to, interval }) => ({
+        url: `/events/website/${trackingCode}/visitors`,
         method: "GET",
         params: {
           from,
@@ -109,4 +135,6 @@ export const {
 
   // Аналитика
   useGetWebsitePageViewsQuery,
+  useGetWebsiteVisitsQuery,
+  useGetWebsiteVisitorsQuery,
 } = apiSlice;
