@@ -5,8 +5,8 @@ import { FormProvider, useForm } from "react-hook-form";
 import { SignInButton } from "@/features/sign-in/sign-in-button";
 
 const defaultSignInFormValues: SignInFormFieldValues = {
-  email: "",
-  password: "",
+  email: "john.doe@example.com",
+  password: "SecurePass123!",
 };
 
 export const SignIn = () => {

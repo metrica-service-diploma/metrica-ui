@@ -28,7 +28,9 @@ export const Websites = () => {
           </CreateWebsiteDialog>
         </FormProvider>
       </Box>
-      <WebsitesTable />
+      <Box maxWidth={750}>
+        <WebsitesTable />
+      </Box>
     </Flex>
   );
 };

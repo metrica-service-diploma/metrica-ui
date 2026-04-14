@@ -1,1 +1,1 @@
-export { MetrcisCard } from "./metrics-card";
+export { MetricsCard } from "./metrics-card";

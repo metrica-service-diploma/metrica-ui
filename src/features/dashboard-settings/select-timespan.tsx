@@ -1,3 +1,4 @@
+import type { TimespanType } from "@/types/common";
 import { createListCollection, Select } from "@chakra-ui/react";
 
 const timespans = createListCollection({
@@ -10,13 +11,29 @@ const timespans = createListCollection({
   ],
 });
 
-export const ChooseTimespan = () => {
+type SelectTimespanProps = {
+  onChoose: (timespanType: TimespanType) => void;
+};
+
+export const SelectTimespan: React.FC<SelectTimespanProps> = ({ onChoose }) => {
+  const handleValueChange = (details: { value: string[] }) => {
+    if (details.value.length > 0) {
+      onChoose(details.value[0] as TimespanType);
+    }
+  };
+
   return (
-    <Select.Root collection={timespans} width={160} variant="subtle">
+    <Select.Root
+      collection={timespans}
+      width={160}
+      variant="subtle"
+      onValueChange={handleValueChange}
+    >
+      <Select.Label>Промежуток</Select.Label>
       <Select.HiddenSelect />
       <Select.Control>
         <Select.Trigger>
-          <Select.ValueText placeholder="Промежуток" />
+          <Select.ValueText placeholder="Неделя" />
         </Select.Trigger>
         <Select.IndicatorGroup>
           <Select.Indicator />

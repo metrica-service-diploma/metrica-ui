@@ -1,14 +1,10 @@
-export enum IntervalType {
-  Days = "Days",
-  Weeks = "Weeks",
-  Months = "Months",
-}
+import type { IntervalType } from "../common";
 
 export interface GetMetricsParams {
   trackingCode: string;
-  from?: string;
-  to?: string;
-  interval?: IntervalType;
+  fromDate?: string | null;
+  toDate?: string | null;
+  intervalType?: IntervalType | null;
 }
 
 export type PageViewsResponse = {

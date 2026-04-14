@@ -3,12 +3,12 @@ import { routesList } from "@/constants/routes";
 import { resetAuthState } from "@/redux/modules/auth";
 import { apiSlice } from "@/redux/services/api";
 import { removeTokenFromLocalStorage } from "@/utils/tokens";
-import { IconButton, Menu, Portal } from "@chakra-ui/react";
+import { IconButton, Menu, Portal, Separator } from "@chakra-ui/react";
 import { FaRegUser } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-export const SignOutMenu = () => {
+export const MainMenu = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -42,8 +42,23 @@ export const SignOutMenu = () => {
       <Portal>
         <Menu.Positioner>
           <Menu.Content>
-            <Menu.Item value="sign-out" onClick={handleSignOut}>
-              Выйти
+            <Link to={routesList.Dashboard}>
+              <Menu.Item value="dashboard" style={{ cursor: "pointer" }}>
+                Дашборд
+              </Menu.Item>
+            </Link>
+            <Link to={routesList.Websites}>
+              <Menu.Item value="websites" style={{ cursor: "pointer" }}>
+                Вебсайты
+              </Menu.Item>
+            </Link>
+            <Separator />
+            <Menu.Item
+              value="sign-out"
+              style={{ cursor: "pointer" }}
+              onClick={handleSignOut}
+            >
+              Выход
             </Menu.Item>
           </Menu.Content>
         </Menu.Positioner>

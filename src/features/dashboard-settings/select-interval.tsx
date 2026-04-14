@@ -1,3 +1,4 @@
+import type { IntervalType } from "@/types/common";
 import { createListCollection, Select } from "@chakra-ui/react";
 
 const segments = createListCollection({
@@ -8,13 +9,29 @@ const segments = createListCollection({
   ],
 });
 
-export const ChooseSegment = () => {
+type SelectIntervalProps = {
+  onChoose: (intervalType: IntervalType) => void;
+};
+
+export const SelectInterval: React.FC<SelectIntervalProps> = ({ onChoose }) => {
+  const handleValueChange = (details: { value: string[] }) => {
+    if (details.value.length > 0) {
+      onChoose(details.value[0] as IntervalType);
+    }
+  };
+
   return (
-    <Select.Root collection={segments} width={160} variant="subtle">
+    <Select.Root
+      collection={segments}
+      width={160}
+      variant="subtle"
+      onValueChange={handleValueChange}
+    >
+      <Select.Label>Интервал</Select.Label>
       <Select.HiddenSelect />
       <Select.Control>
         <Select.Trigger>
-          <Select.ValueText placeholder="Сегмент" />
+          <Select.ValueText placeholder="По дням" />
         </Select.Trigger>
         <Select.IndicatorGroup>
           <Select.Indicator />

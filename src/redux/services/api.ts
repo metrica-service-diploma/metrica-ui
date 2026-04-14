@@ -86,37 +86,37 @@ export const apiSlice = createApi({
 
     // Аналитика
     getWebsitePageViews: builder.query<PageViewsResponse, GetMetricsParams>({
-      query: ({ trackingCode, from, to, interval }) => ({
+      query: ({ trackingCode, fromDate, toDate, intervalType }) => ({
         url: `/events/website/${trackingCode}/page-views`,
         method: "GET",
         params: {
-          from,
-          to,
-          interval,
+          fromDate,
+          toDate,
+          intervalType,
         },
       }),
     }),
 
     getWebsiteVisits: builder.query<VisitsResponse, GetMetricsParams>({
-      query: ({ trackingCode, from, to, interval }) => ({
+      query: ({ trackingCode, fromDate, toDate, intervalType }) => ({
         url: `/events/website/${trackingCode}/visits`,
         method: "GET",
         params: {
-          from,
-          to,
-          interval,
+          fromDate,
+          toDate,
+          intervalType,
         },
       }),
     }),
 
     getWebsiteVisitors: builder.query<VisitorsResponse, GetMetricsParams>({
-      query: ({ trackingCode, from, to, interval }) => ({
+      query: ({ trackingCode, fromDate, toDate, intervalType }) => ({
         url: `/events/website/${trackingCode}/visitors`,
         method: "GET",
         params: {
-          from,
-          to,
-          interval,
+          fromDate,
+          toDate,
+          intervalType,
         },
       }),
     }),

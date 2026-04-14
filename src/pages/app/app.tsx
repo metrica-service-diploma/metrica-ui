@@ -1,4 +1,4 @@
-import { SignOutMenu } from "@/features/user-settings";
+import { MainMenu } from "@/features/main-menu";
 import { Flex, Heading } from "@chakra-ui/react";
 import { Outlet } from "react-router-dom";
 
@@ -16,7 +16,7 @@ export const App = () => (
       <Heading as="h2" fontWeight="normal" size="lg">
         Сервис метрики
       </Heading>
-      <SignOutMenu />
+      <MainMenu />
     </Flex>
     <Outlet />
   </Flex>

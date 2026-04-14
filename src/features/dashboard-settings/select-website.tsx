@@ -1,11 +1,11 @@
 import { useGetUserWebsitesQuery } from "@/redux/services/api";
 import { createListCollection, Select } from "@chakra-ui/react";
 
-type ChooseWebsiteProps = {
-  onChoose: (websiteId: string) => void;
+type SelectWebsiteProps = {
+  onChoose: (trackingCode: string) => void;
 };
 
-export const ChooseWebsite: React.FC<ChooseWebsiteProps> = ({ onChoose }) => {
+export const SelectWebsite: React.FC<SelectWebsiteProps> = ({ onChoose }) => {
   const { data = [] } = useGetUserWebsitesQuery();
 
   const websites = createListCollection({
@@ -17,8 +17,6 @@ export const ChooseWebsite: React.FC<ChooseWebsiteProps> = ({ onChoose }) => {
 
   const handleValueChange = (details: { value: string[] }) => {
     if (details.value.length > 0) {
-      console.log(details);
-
       onChoose(details.value[0]);
     }
   };
@@ -26,14 +24,15 @@ export const ChooseWebsite: React.FC<ChooseWebsiteProps> = ({ onChoose }) => {
   return (
     <Select.Root
       collection={websites}
-      width={250}
+      width={200}
       variant="subtle"
       onValueChange={handleValueChange}
     >
+      <Select.Label>Вебсайт</Select.Label>
       <Select.HiddenSelect />
       <Select.Control>
         <Select.Trigger>
-          <Select.ValueText placeholder="Выбрать вебсайт" />
+          <Select.ValueText placeholder="Интернет-магазин" />
         </Select.Trigger>
         <Select.IndicatorGroup>
           <Select.Indicator />
