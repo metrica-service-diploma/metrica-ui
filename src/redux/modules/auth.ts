@@ -3,8 +3,6 @@ import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 export type AuthState = {
   accessToken: string | null;
-  // refreshToken: string | null;
-  // expiresIn: number | null;
 };
 
 export const initialState: AuthState = getTokenFromLocalStorage();
@@ -19,18 +17,12 @@ export const authSlice = createSlice({
         payload: { accessToken },
       }: PayloadAction<{
         accessToken: string;
-        // refreshToken: string;
-        // expiresIn: number;
       }>,
     ) => {
       state.accessToken = accessToken;
-      // state.refreshToken = refreshToken;
-      // state.expiresIn = expiresIn;
     },
     resetAuthState: (state) => {
       state.accessToken = null;
-      // state.refreshToken = null;
-      // state.expiresIn = null;
     },
   },
   selectors: {

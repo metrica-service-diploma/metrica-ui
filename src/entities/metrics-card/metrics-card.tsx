@@ -1,5 +1,13 @@
-import { Flex, Heading, Text } from "@chakra-ui/react";
-import { LineChart, Line, Tooltip, ResponsiveContainer } from "recharts";
+import { Flex, Heading } from "@chakra-ui/react";
+import {
+  LineChart,
+  Line,
+  Tooltip,
+  ResponsiveContainer,
+  YAxis,
+  XAxis,
+  CartesianGrid,
+} from "recharts";
 import type { ChartData } from "recharts/types/state/chartDataSlice";
 
 type MetricsCardProps = {
@@ -15,13 +23,23 @@ export const MetricsCard: React.FC<MetricsCardProps> = ({
   chartData,
   dataKey,
 }) => (
-  <Flex p={3} gap={4} border="1px solid black" borderRadius={15} bg="gray.100">
-    <Flex direction="column" width="150px">
-      <Heading size="lg">{title}</Heading>
-      <Text>{totalValue}</Text>
-    </Flex>
+  <Flex
+    direction="column"
+    gap="1rem"
+    padding="0.75rem"
+    minHeight="12.5rem"
+    backgroundColor="gray.100"
+    border="1px solid black"
+    borderRadius={15}
+  >
+    <Heading size="lg">
+      {title}: {totalValue}
+    </Heading>
     <ResponsiveContainer width="100%">
       <LineChart data={chartData}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="startDate" />
+        <YAxis />
         <Line type="linear" dataKey={dataKey} />
         <Tooltip />
       </LineChart>

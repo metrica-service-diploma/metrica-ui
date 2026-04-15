@@ -4,25 +4,32 @@ import type { IntervalType } from "@/types/common";
 
 type PageViewsChartProps = {
   trackingCode: string;
+  fromDate: Date | null;
+  toDate: Date | null;
   intervalType: IntervalType | null;
 };
 
 export const PageViewsChart: React.FC<PageViewsChartProps> = ({
   trackingCode,
+  fromDate,
+  toDate,
   intervalType,
 }) => {
-  const { data } = useGetWebsitePageViewsQuery({
+  const { data: pageViewsData } = useGetWebsitePageViewsQuery({
     trackingCode,
-    intervalType,
+    fromDate: fromDate?.toISOString(),
+    toDate: toDate?.toISOString(),
+    intervalType: intervalType ?? undefined,
   });
 
-  return data ? (
+  // TODO: Заменить на Skeleton
+  return pageViewsData ? (
     <MetricsCard
       title="Просмотры"
-      totalValue={data.totalPageViews}
-      chartData={data.intervalPageViews.map((item) => ({
-        date: new Date(item.startDate).toLocaleDateString(),
-        pageViews: item.pageViews,
+      totalValue={pageViewsData.totalPageViews}
+      chartData={pageViewsData.intervalPageViews.map((chartItem) => ({
+        startDate: new Date(chartItem.startDate).toLocaleDateString("ru-RU"),
+        pageViews: chartItem.pageViews,
       }))}
       dataKey="pageViews"
     />

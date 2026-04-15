@@ -4,25 +4,32 @@ import type { IntervalType } from "@/types/common";
 
 type VisitsChartProps = {
   trackingCode: string;
+  fromDate: Date | null;
+  toDate: Date | null;
   intervalType: IntervalType | null;
 };
 
 export const VisitsChart: React.FC<VisitsChartProps> = ({
   trackingCode,
+  fromDate,
+  toDate,
   intervalType,
 }) => {
-  const { data } = useGetWebsiteVisitsQuery({
+  const { data: visitsData } = useGetWebsiteVisitsQuery({
     trackingCode,
-    intervalType,
+    fromDate: fromDate?.toISOString(),
+    toDate: toDate?.toISOString(),
+    intervalType: intervalType ?? undefined,
   });
 
-  return data ? (
+  // TODO: Заменить на Skeleton
+  return visitsData ? (
     <MetricsCard
       title="Визиты"
-      totalValue={data.totalVisits}
-      chartData={data.intervalVisits.map((item) => ({
-        date: new Date(item.startDate).toLocaleDateString(),
-        visits: item.visits,
+      totalValue={visitsData.totalVisits}
+      chartData={visitsData.intervalVisits.map((chartItem) => ({
+        startDate: new Date(chartItem.startDate).toLocaleDateString("ru-RU"),
+        visits: chartItem.visits,
       }))}
       dataKey="visits"
     />

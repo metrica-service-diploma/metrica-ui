@@ -1,13 +1,13 @@
-import type { TimespanType } from "@/types/common";
+import { TimespanType } from "@/types/common";
 import { createListCollection, Select } from "@chakra-ui/react";
 
 const timespans = createListCollection({
   items: [
-    { label: "Сегодня", value: "today" },
-    { label: "Вчера", value: "yesterday" },
-    { label: "Неделя", value: "week" },
-    { label: "Месяц", value: "month" },
-    { label: "Квартал", value: "quarter" },
+    { label: "Сегодня", value: TimespanType.Today },
+    { label: "Вчера", value: TimespanType.Yesterday },
+    { label: "Неделя", value: TimespanType.Week },
+    { label: "Месяц", value: TimespanType.Month },
+    { label: "Квартал", value: TimespanType.Quarter },
   ],
 });
 
@@ -27,6 +27,7 @@ export const SelectTimespan: React.FC<SelectTimespanProps> = ({ onChoose }) => {
       collection={timespans}
       width={160}
       variant="subtle"
+      defaultValue={[TimespanType.Quarter]}
       onValueChange={handleValueChange}
     >
       <Select.Label>Промежуток</Select.Label>

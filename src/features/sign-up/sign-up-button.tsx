@@ -30,7 +30,7 @@ export const SignUpButton = () => {
         password: values.password,
       }).unwrap();
 
-      saveTokenInLocalStorage({ accessToken });
+      saveTokenInLocalStorage(accessToken);
       dispatch(setAuthState({ accessToken }));
 
       toaster.create({

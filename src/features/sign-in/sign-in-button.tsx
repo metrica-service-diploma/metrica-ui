@@ -20,7 +20,7 @@ export const SignInButton = () => {
     try {
       const { accessToken } = await login(data).unwrap();
 
-      saveTokenInLocalStorage({ accessToken });
+      saveTokenInLocalStorage(accessToken);
       dispatch(setAuthState({ accessToken }));
 
       toaster.create({
