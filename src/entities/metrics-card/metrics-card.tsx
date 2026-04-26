@@ -26,20 +26,19 @@ export const MetricsCard: React.FC<MetricsCardProps> = ({
   <Flex
     direction="column"
     gap="1rem"
-    padding="0.75rem"
-    minHeight="12.5rem"
+    padding="1.25rem"
     backgroundColor="gray.100"
-    border="1px solid black"
+    border="1px solid lightgray"
     borderRadius={15}
   >
-    <Heading size="lg">
+    <Heading size="xl">
       {title}: {totalValue}
     </Heading>
-    <ResponsiveContainer width="100%">
+    <ResponsiveContainer width="100%" height={100}>
       <LineChart data={chartData}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="startDate" />
-        <YAxis />
+        <YAxis width="auto" />
         <Line type="linear" dataKey={dataKey} />
         <Tooltip />
       </LineChart>

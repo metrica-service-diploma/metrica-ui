@@ -1,11 +1,18 @@
 import { routesList } from "@/constants/routes";
+import {
+  dashboardSettingsSelector,
+  setDashboardSettings,
+} from "@/redux/modules/dashboard";
 import { useGetUserWebsitesQuery } from "@/redux/services/api";
-import { Table } from "@chakra-ui/react";
-import { Link as ChakraLink } from "@chakra-ui/react";
+import { useAppDispatch } from "@/redux/store";
+import { Table, Link as ChakraLink } from "@chakra-ui/react";
+import { useSelector } from "react-redux";
 import { Link as RouterLink } from "react-router-dom";
 
 export const WebsitesTable = () => {
+  const dispatch = useAppDispatch();
   const websites = useGetUserWebsitesQuery();
+  const dashboardSettings = useSelector(dashboardSettingsSelector);
 
   return (
     <Table.Root>
@@ -22,7 +29,17 @@ export const WebsitesTable = () => {
           <Table.Row key={website.id}>
             <Table.Cell>
               <ChakraLink asChild color="blue.500">
-                <RouterLink to={routesList.Dashboard}>
+                <RouterLink
+                  to={routesList.Dashboard}
+                  onClick={() => {
+                    dispatch(
+                      setDashboardSettings({
+                        ...dashboardSettings,
+                        trackingCode: website.trackingCode,
+                      }),
+                    );
+                  }}
+                >
                   {website.name}
                 </RouterLink>
               </ChakraLink>

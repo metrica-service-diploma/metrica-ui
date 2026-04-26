@@ -28,7 +28,10 @@ export const VisitorsChart: React.FC<VisitorsChartProps> = ({
       title="Посетители"
       totalValue={visitorsData.totalVisitors}
       chartData={visitorsData.intervalVisitors.map((chartItem) => ({
-        startDate: new Date(chartItem.startDate).toLocaleDateString("ru-RU"),
+        startDate: new Date(chartItem.startDate).toLocaleDateString("ru-RU", {
+          day: "numeric",
+          month: "short",
+        }),
         visitors: chartItem.visitors,
       }))}
       dataKey="visitors"

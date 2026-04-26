@@ -20,6 +20,7 @@ export const DashboardSettings = () => {
   return (
     <Flex direction="column" gap="1.5rem">
       <SelectWebsite
+        trackingCode={dashboardSettings.trackingCode}
         onChoose={(trackingCode) =>
           dispatch(setDashboardSettings({ ...dashboardSettings, trackingCode }))
         }

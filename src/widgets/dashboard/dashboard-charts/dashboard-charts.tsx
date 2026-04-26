@@ -5,7 +5,7 @@ import {
 } from "@/features/dashboard-charts";
 import { dashboardSettingsSelector } from "@/redux/modules/dashboard";
 import { getDatesFromTimespanType } from "@/utils/dashboard";
-import { Flex, Heading } from "@chakra-ui/react";
+import { Flex, Grid, GridItem, Heading } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 
 export const DashboardCharts = () => {
@@ -18,31 +18,40 @@ export const DashboardCharts = () => {
     : { fromDate: null, toDate: null };
 
   return (
-    <Flex direction="column">
-      <Heading size="2xl" mb="1.5rem">
+    <Flex direction="column" gapY={5}>
+      <Heading size="2xl">
         Ключевые метрики
       </Heading>
-      <Flex direction="column" gap="1.5rem">
+      <Grid templateColumns="repeat(3, 1fr)" gap={6}>
         {trackingCode && (
           <>
-            <PageViewsChart
-              trackingCode={trackingCode}
-              intervalType={intervalType}
-              {...dates}
-            />
-            <VisitsChart
-              trackingCode={trackingCode}
-              intervalType={intervalType}
-              {...dates}
-            />
-            <VisitorsChart
-              trackingCode={trackingCode}
-              intervalType={intervalType}
-              {...dates}
-            />
+            <GridItem>
+              <PageViewsChart
+                trackingCode={trackingCode}
+                intervalType={intervalType}
+                {...dates}
+              />
+            </GridItem>
+            <GridItem>
+              <VisitsChart
+                trackingCode={trackingCode}
+                intervalType={intervalType}
+                {...dates}
+              />
+            </GridItem>
+            <GridItem>
+              <VisitorsChart
+                trackingCode={trackingCode}
+                intervalType={intervalType}
+                {...dates}
+              />
+            </GridItem>
           </>
         )}
-      </Flex>
+      </Grid>
+      {/* <Heading size="2xl" mb="1.5rem">
+        Кастомные метрики
+      </Heading> */}
     </Flex>
   );
 };

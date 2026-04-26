@@ -1,6 +1,5 @@
 import { dashboardSettingsSelector } from "@/redux/modules/dashboard";
-import { DashboardCharts } from "@/widgets/dashboard/dashboard-charts/dashboard-charts";
-import { DashboardSettings } from "@/widgets/dashboard/dashboard-settings/dashboard-settings";
+import { DashboardCharts, DashboardSettings } from "@/widgets/dashboard";
 import { Flex } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 

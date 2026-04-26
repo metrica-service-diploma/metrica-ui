@@ -2,10 +2,14 @@ import { useGetUserWebsitesQuery } from "@/redux/services/api";
 import { createListCollection, Select } from "@chakra-ui/react";
 
 type SelectWebsiteProps = {
+  trackingCode?: string | null;
   onChoose: (trackingCode: string) => void;
 };
 
-export const SelectWebsite: React.FC<SelectWebsiteProps> = ({ onChoose }) => {
+export const SelectWebsite: React.FC<SelectWebsiteProps> = ({
+  trackingCode,
+  onChoose,
+}) => {
   const { data = [] } = useGetUserWebsitesQuery();
 
   const websites = createListCollection({
@@ -26,6 +30,7 @@ export const SelectWebsite: React.FC<SelectWebsiteProps> = ({ onChoose }) => {
       collection={websites}
       width={200}
       variant="subtle"
+      value={trackingCode ? [trackingCode] : []}
       onValueChange={handleValueChange}
     >
       <Select.Label>Вебсайт</Select.Label>

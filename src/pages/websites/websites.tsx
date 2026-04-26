@@ -1,9 +1,11 @@
-import { CreateWebsiteButton } from "@/features/create-website/create-website-button";
-import { CreateWebsiteDialog } from "@/features/create-website/create-website-dialog";
-import { CreateWebsiteForm } from "@/features/create-website/create-website-form";
+import {
+  CreateWebsiteForm,
+  CreateWebsiteDialog,
+  CreateWebsiteButton,
+} from "@/features/create-website";
 import type { CreateWebsiteFieldValues } from "@/types/forms";
 import { WebsitesTable } from "@/widgets/websites-table";
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Flex, Heading } from "@chakra-ui/react";
 import { FormProvider, useForm } from "react-hook-form";
 
 const defaultCreateWebsiteFormValues: CreateWebsiteFieldValues = {
@@ -18,8 +20,9 @@ export const Websites = () => {
   });
 
   return (
-    <Flex direction="column" padding="1.5rem">
-      <Box mb="1.5rem" alignSelf="flex-start">
+    <Flex direction="column" gapY="1.5rem" padding={5}>
+      <Heading size="3xl">Список вебсайтов</Heading>
+      <Box alignSelf="flex-start">
         <FormProvider {...createWebsiteFormMethods}>
           <CreateWebsiteDialog>
             <CreateWebsiteForm>

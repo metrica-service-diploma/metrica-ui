@@ -28,7 +28,10 @@ export const PageViewsChart: React.FC<PageViewsChartProps> = ({
       title="Просмотры"
       totalValue={pageViewsData.totalPageViews}
       chartData={pageViewsData.intervalPageViews.map((chartItem) => ({
-        startDate: new Date(chartItem.startDate).toLocaleDateString("ru-RU"),
+        startDate: new Date(chartItem.startDate).toLocaleDateString("ru-RU", {
+          day: "numeric",
+          month: "short",
+        }),
         pageViews: chartItem.pageViews,
       }))}
       dataKey="pageViews"
