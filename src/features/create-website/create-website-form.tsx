@@ -13,7 +13,7 @@ export const CreateWebsiteForm = ({ children }: CreateWebsiteFormProps) => (
     padding="4"
   >
     <Heading alignSelf="center" marginBottom="4">
-      Добавить вебсайт
+      Добавить веб-сайт
     </Heading>
     <Flex direction="column" gapY="2" marginBottom="4">
       <NameField />

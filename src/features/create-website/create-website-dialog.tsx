@@ -7,7 +7,7 @@ type CreateWebsiteDialogProps = {
 export const CreateWebsiteDialog = ({ children }: CreateWebsiteDialogProps) => (
   <Dialog.Root>
     <Dialog.Trigger asChild>
-      <Button>Добавить вебсайт</Button>
+      <Button>Добавить веб-сайт</Button>
     </Dialog.Trigger>
     <Portal>
       <Dialog.Backdrop />

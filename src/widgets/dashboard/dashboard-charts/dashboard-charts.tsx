@@ -49,9 +49,6 @@ export const DashboardCharts = () => {
           </>
         )}
       </Grid>
-      {/* <Heading size="2xl" mb="1.5rem">
-        Кастомные метрики
-      </Heading> */}
     </Flex>
   );
 };

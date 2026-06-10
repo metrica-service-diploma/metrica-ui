@@ -21,7 +21,7 @@ export const Websites = () => {
 
   return (
     <Flex direction="column" gapY="1.5rem" padding={5}>
-      <Heading size="3xl">Список вебсайтов</Heading>
+      <Heading size="3xl">Список веб-сайтов</Heading>
       <Box alignSelf="flex-start">
         <FormProvider {...createWebsiteFormMethods}>
           <CreateWebsiteDialog>
@@ -31,7 +31,7 @@ export const Websites = () => {
           </CreateWebsiteDialog>
         </FormProvider>
       </Box>
-      <Box maxWidth={750}>
+      <Box>
         <WebsitesTable />
       </Box>
     </Flex>

@@ -18,10 +18,10 @@ export const WebsitesTable = () => {
     <Table.Root>
       <Table.Header>
         <Table.Row>
-          <Table.ColumnHeader>Название</Table.ColumnHeader>
-          <Table.ColumnHeader>Домен</Table.ColumnHeader>
-          <Table.ColumnHeader>Код доступа</Table.ColumnHeader>
-          <Table.ColumnHeader>Дата создания</Table.ColumnHeader>
+          <Table.ColumnHeader>Название веб-сайта</Table.ColumnHeader>
+          <Table.ColumnHeader>Доменное имя</Table.ColumnHeader>
+          <Table.ColumnHeader>Код отслеживания</Table.ColumnHeader>
+          <Table.ColumnHeader>Дата добавления</Table.ColumnHeader>
         </Table.Row>
       </Table.Header>
       <Table.Body>
